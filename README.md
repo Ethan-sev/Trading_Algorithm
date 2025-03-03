@@ -30,4 +30,4 @@ Make sure you have Python 3.x installed on your system. You also need **pip** to
 ```bash
 git clone https://github.com/Ethan-sev/Trading_Algorithm.git
 cd Trading_Algorithm
-images/Screenshot 2025-03-03 150557.png
+![Description of Image](images/Screenshot%202025-03-03%20150557.png)
