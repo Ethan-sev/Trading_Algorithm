@@ -19,6 +19,7 @@ This project is a stock trading algorithm specifically designed to help users de
 
 ---images
 ![Description of Image](images/Screenshot%202025-03-03%20150557.png)
+[Description of Image](https://github.com/Ethan-sev/Trading_Algorithm/blob/main/images/Screenshot%202025-03-03%20162206.png)
 
 ## Installation Instructions
 
