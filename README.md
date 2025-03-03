@@ -17,7 +17,8 @@ This project is a stock trading algorithm specifically designed to help users de
 - **Pandas** and **NumPy** (for data manipulation)
 - **scikit-learn** (for machine learning model development)
 
----
+---images
+![Description of Image](images/Screenshot%202025-03-03%20150557.png)
 
 ## Installation Instructions
 
@@ -30,4 +31,4 @@ Make sure you have Python 3.x installed on your system. You also need **pip** to
 ```bash
 git clone https://github.com/Ethan-sev/Trading_Algorithm.git
 cd Trading_Algorithm
-![Description of Image](images/Screenshot%202025-03-03%20150557.png)
+
