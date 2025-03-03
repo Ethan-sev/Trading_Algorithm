@@ -2,102 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wheel Strategy</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
-        header {
-            background-color: #2070c0;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        label {
-            font-weight: bold;
-        }
-        select, button {
-            padding: 10px;
-            margin: 10px 0;
-            width: 100%;
-            font-size: 16px;
-        }
-        h2 {
-            color: #2c3e50;
-        }
-        .stock-data, .recommendation {
-            background-color: #fff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .stock-data p, .recommendation p {
-            margin: 8px 0;
-        }
-        .recommendation {
-            background-color: #f9e8a3;
-        }
-        .good-decision {
-            color: #27ae60;
-        }
-        .bad-decision {
-            color: #e74c3c;
-        }
-    </style>
+    <title>Stock Risk Assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <header>
-        <h1>The Wheel Strategy</h1>
-        <p>Choose a stock and get recommendations for cash-covered puts.</p>
-    </header>
-
-    <div class="container">
-        <h2>Select a Stock</h2>
-        <form method="POST" action="/stock">
-            <label for="stock">Choose a stock:</label>
-            <select name="stock" id="stock">
-                {% for stock in stocks %}
-                    <option value="{{ stock }}">{{ stock }}</option>
+    <h2>Stock Risk Assessment</h2>
+    <p>Enter a ticker to see available OTM strike prices:</p>
+    
+    <form action="/" method="post">
+        <label for="ticker">Ticker:</label>
+        <select name="ticker" id="ticker" required>
+            <option value="">--Select a Ticker--</option>
+            {% for t in tickers %}
+                <option value="{{ t }}" {% if ticker and t == ticker %}selected{% endif %}>{{ t }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        
+        {% if strike_prices %}
+            <label for="strike_price">Select Strike Price:</label>
+            <select name="strike_price" id="strike_price" required>
+                <option value="">--Select a Strike Price--</option>
+                {% for sp in strike_prices %}
+                    <option value="{{ sp }}">{{ sp }}</option>
                 {% endfor %}
             </select>
-            <button type="submit">Get Stock Data</button>
-        </form>
-
-        {% if stock_data %}
-            <div class="stock-data">
-                <h3>Stock Data for {{ stock_data['Ticker'] }}</h3>
-                <p><strong>Date:</strong> {{ stock_data['Date'] }}</p>
-                <p><strong>Open:</strong> {{ stock_data['Open'] }}</p>
-                <p><strong>High:</strong> {{ stock_data['High'] }}</p>
-                <p><strong>Low:</strong> {{ stock_data['Low'] }}</p>
-                <p><strong>Close:</strong> {{ stock_data['Close'] }}</p>
-                <p><strong>Volume:</strong> {{ stock_data['Volume'] }}</p>
-                <p><strong>Dividends:</strong> {{ stock_data['Dividends'] }}</p>
-            </div>
-
-            <div class="recommendation">
-                <h3>Cash-Covered Put Recommendation</h3>
-                <p>Based on the data for {{ stock_data['Ticker'] }}, the recommendation is:</p>
-                {% if recommendation == 'Good' %}
-                    <p class="good-decision">✅ It is a good decision to sell cash-covered puts.</p>
-                {% else %}
-                    <p class="bad-decision">❌ It is not recommended to sell cash-covered puts.</p>
-                {% endif %}
-            </div>
-
+            <br><br>
+            <button type="submit">Assess Risk</button>
         {% else %}
-            <p>No stock data available for the selected stock.</p>
+            <button type="submit">Next</button>
         {% endif %}
-    </div>
+    </form>
+    
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    
+    <br>
+    <a href="/">Back to Assessment</a>
 </body>
 </html>

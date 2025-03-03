@@ -1,0 +1,100 @@
+/* General reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3c6cac; /* Soft background color */
+    color: #333; /* Dark gray text for readability */
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Center the content */
+h2 {
+    text-align: center;
+    color: #38a03c; /* Green color for the title */
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    background-color: #289225; /* White background for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for the form */
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+label {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1em;
+    border: 2px solid #000000;
+    border-radius: 4px;
+}
+
+select:focus, button:focus {
+    border-color: #574545; /* Green border on focus */
+    outline: none;
+}
+
+button {
+    background-color: #7e3dbb;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #607561; /* Darker green on hover */
+}
+
+/* Error message */
+p {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/* Links styling */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    h2 {
+        font-size: 1.8em;
+    }
+
+    form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    button, select {
+        font-size: 0.9em;
+    }
+}

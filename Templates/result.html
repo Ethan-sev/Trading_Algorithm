@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Put Selling Assessment Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a0e0e;
+            margin: 2rem;
+        }
+        .container {
+            background: #4f81a3;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 700px;
+            margin: auto;
+            box-shadow: 0 2px 8px rgba(141, 69, 69, 0.1);
+        }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        .info {
+            margin-bottom: 1rem;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            border: 1px solid #502f2f;
+            padding: 0.75rem;
+            text-align: center;
+        }
+        th {
+            background-color: #357030;
+        }
+        .recommendation {
+            font-size: 1.4rem;
+            color: #040c04;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .back-link a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Assessment Result for {{ ticker }}</h1>
+        <div class="info">
+            <p><strong>Current Stock Price:</strong> {{ stock_price }}</p>
+            <p><strong>User Selected Strike Price:</strong> {{ strike_price }}</p>
+        </div>
+        
+        <h2>Model Predictions</h2>
+        <table>
+            <tr>
+                <th>OTM Option</th>
+                <th>Strike Price</th>
+                <th>Predicted Risk-Adjusted Return</th>
+            </tr>
+            {% for option, data in predictions.items() %}
+            <tr>
+                <td>{{ option }}</td>
+                <td>{{ data.strike }}</td>
+                <td>{{ data.predicted_profit | round(2) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <h3>Final Recommendation</h3>
+        <p class="recommendation">{{ final_recommendation }}</p>
+        
+        <div class="back-link">
+            <a href="/">Back to Assessment</a>
+        </div>
+    </div>
+</body>
+</html>
